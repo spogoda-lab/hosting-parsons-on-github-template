@@ -7,6 +7,45 @@ title: Multiple Parson's Problems on One Page
 ---
 # Parsons Practice
 
+
+<div id="bk_01-sortableTrash" class="sortable-code"></div> 
+<div id="bk_01-sortable" class="sortable-code"></div> 
+<div style="clear:both;"></div> 
+<p> 
+    <input id="bk_01-feedbackLink" value="Get Feedback" type="button" /> 
+    <input id="bk_01-newInstanceLink" value="Reset Problem" type="button" /> 
+</p> 
+<script type="text/javascript"> 
+(function(){
+  var initial = "print(&quot;Hello, what is your name?&quot;)\n" +
+    "user = input()\n" +
+    "if user == &quot;Bob&quot;:\n" +
+    "  print(&quot;My name is Bob, too! Welcome!&quot;)\n" +
+    "else:\n" +
+    "  print(&quot;Welcome,&quot;, user)";
+  var parsonsPuzzle = new ParsonsWidget({
+    "sortableId": "bk_01-sortable",
+    "max_wrong_lines": 10,
+    "grader": ParsonsWidget._graders.LineBasedGrader,
+    "exec_limit": 2500,
+    "can_indent": true,
+    "x_indent": 50,
+    "lang": "en",
+    "show_feedback": true
+  });
+  parsonsPuzzle.init(initial);
+  parsonsPuzzle.shuffleLines();
+  $("#bk_01-newInstanceLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.shuffleLines(); 
+  }); 
+  $("#bk_01-feedbackLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.getFeedback(); 
+  }); 
+})(); 
+</script>
+
 ## Parsons 1 (Line Based Grader)
 Re-arrange the blocks below so they print out "Hello World!"
 
